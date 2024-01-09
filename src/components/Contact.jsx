@@ -10,8 +10,8 @@ import { slideIn } from "../utils/motion";
 const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
-    name: "",
-    email: "",
+    user_name: "",
+    user_email: "",
     message: "",
   });
 
@@ -32,17 +32,11 @@ const Contact = () => {
     setLoading(true);
 
     emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "JavaScript Mastery",
-          from_email: form.email,
-          to_email: "sujata@jsmastery.pro",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_RECEIVERID,
+        import.meta.env.VITE_EMAILJS_TEMPLATEID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_USERID,
       )
       .then(
         () => {
@@ -50,8 +44,8 @@ const Contact = () => {
           alert("Thank you. I will get back to you as soon as possible.");
 
           setForm({
-            name: "",
-            email: "",
+            user_name: "",
+            user_email: "",
             message: "",
           });
         },
@@ -84,7 +78,7 @@ const Contact = () => {
             <span className='text-white font-medium mb-4'>Your Name</span>
             <input
               type='text'
-              name='name'
+              name='user_name'
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
@@ -95,7 +89,7 @@ const Contact = () => {
             <span className='text-white font-medium mb-4'>Your email</span>
             <input
               type='email'
-              name='email'
+              name='user_email'
               value={form.email}
               onChange={handleChange}
               placeholder="What's your web address?"
