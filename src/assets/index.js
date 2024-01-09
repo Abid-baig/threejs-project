@@ -20,7 +20,7 @@ import typescript from "./tech/typescript.png";
 import python from "./tech/python.png";
 import rails from "./tech/rails.png";
 import dotnet from "./tech/dotnet.png";
-import dataScience from "./tech/dataScience.png";
+import dataScience from "./tech/datascience.png";
 import threejs from "./tech/threejs.svg";
 
 import meta from "./company/meta.png";
